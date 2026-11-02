@@ -1,0 +1,48 @@
+<html><body style="margin:0;background:#fff"><svg xmlns="http://www.w3.org/2000/svg" width="1500" height="800" viewBox="0 0 1500 800" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker></defs>
+<style>.st{fill:#E3F1EF;stroke:#2E6F68;stroke-width:2}.t{font-size:15px;fill:#111}.lb{font-size:14px;fill:#333}.ac{fill:#FBEBD9;stroke:#B5651D;stroke-width:1.8}.er{fill:#FDECEC;stroke:#C0504D;stroke-width:1.8}.e{stroke:#444;stroke-width:1.8;fill:none;marker-end:url(#a)}</style>
+<circle class="st" cx="110" cy="395" r="52"/><circle cx="110" cy="395" r="46" fill="none" stroke="#2E6F68" stroke-width="1.5"/><text x="110" y="400" text-anchor="middle" class="t" font-weight="bold">START</text>
+<path class="e" d="M50,320 C-10,265 150,245 120,335"/><text x="70" y="267" class="lb">whitespace</text>
+<path class="e" d="M-10,395 H54"/><text x="-30" y="385" class="lb"></text>
+<path class="e" d="M160,383 C280,395 270,70 408,70"/>
+<text x="300" y="60" class="lb" font-weight="bold">letter or _</text>
+<ellipse class="st" cx="470" cy="70" rx="92" ry="34"/><text x="470" y="75" text-anchor="middle" class="t">IN_IDENT</text>
+<path class="e" d="M445,37 C435,-5 505,-5 495,36"/><text x="510" y="14" class="lb">letter, digit, _</text>
+<path class="e" d="M550,70 H720"/><text x="562" y="62" class="lb">other</text>
+<rect class="ac" x="720" y="40" width="760" height="60" rx="6"/>
+<text x="736" y="72" class="lb">IDENT, or keyword after an O(1) hash lookup</text>
+<path class="e" d="M160,389 C280,395 270,180 408,180"/>
+<text x="300" y="170" class="lb" font-weight="bold">digit</text>
+<ellipse class="st" cx="470" cy="180" rx="92" ry="34"/><text x="470" y="185" text-anchor="middle" class="t">IN_NUMBER</text>
+<path class="e" d="M445,147 C435,105 505,105 495,146"/><text x="510" y="124" class="lb">letter, digit, _</text>
+<path class="e" d="M550,180 H720"/><text x="562" y="172" class="lb">other</text>
+<rect class="ac" x="720" y="150" width="760" height="60" rx="6"/>
+<text x="736" y="182" class="lb">CONST if the lexeme is 0 or 1; otherwise E102 (2, 10) or E103 (1a)</text>
+<path class="e" d="M160,395 C280,395 270,290 408,290"/>
+<text x="300" y="280" class="lb" font-weight="bold">/</text>
+<ellipse class="st" cx="470" cy="290" rx="92" ry="34"/><text x="470" y="295" text-anchor="middle" class="t">SAW_SLASH</text>
+<path class="e" d="M550,290 H720"/><text x="562" y="282" class="lb">/  then  *</text>
+<rect class="ac" x="720" y="260" width="760" height="60" rx="6"/>
+<text x="736" y="284" class="lb">IN_LINE_COMMENT or IN_BLOCK_COMMENT, both return to START; E104 if a block comment hits</text>
+<text x="736" y="304" class="lb">end of file; E106 for a lone /</text>
+<path class="e" d="M160,401 C280,395 270,400 408,400"/>
+<text x="300" y="390" class="lb" font-weight="bold">& or |</text>
+<ellipse class="st" cx="470" cy="400" rx="92" ry="34"/><text x="470" y="405" text-anchor="middle" class="t">SAW_AMP | SAW_PIPE</text>
+<path class="e" d="M550,400 H720"/><text x="562" y="392" class="lb">& or | again</text>
+<rect class="ac" x="720" y="370" width="760" height="60" rx="6"/>
+<text x="736" y="402" class="lb">AND or OR token (the C forms && and || also give W101)</text>
+<path class="e" d="M160,407 C280,395 270,510 408,510"/>
+<text x="300" y="500" class="lb" font-weight="bold">=</text>
+<ellipse class="st" cx="470" cy="510" rx="92" ry="34"/><text x="470" y="515" text-anchor="middle" class="t">SAW_EQ</text>
+<path class="e" d="M550,510 H720"/><text x="562" y="502" class="lb">= again</text>
+<rect class="ac" x="720" y="480" width="760" height="60" rx="6"/>
+<text x="736" y="512" class="lb">ASSIGN, or EQEQ for == (the parser explains it with E216)</text>
+<path class="e" d="M150,425 C230,515 320,620 720,620"/><text x="330" y="612" class="lb" font-weight="bold">; , ( ) ^ ! ~</text>
+<rect class="ac" x="720" y="590" width="760" height="60" rx="6"/>
+<text x="736" y="622" class="lb">single-character token: SEMI, COMMA, LPAREN, RPAREN, XOR, NOT</text>
+<path class="e" d="M150,425 C230,515 320,690 720,690"/><text x="330" y="682" class="lb" font-weight="bold">anything else</text>
+<rect class="er" x="720" y="660" width="760" height="60" rx="6"/>
+<text x="736" y="684" class="lb">E101 illegal character (runs merged, hint for + * . ' -) or E105 Unicode such as ∧ ∨ ¬</text>
+<text x="736" y="704" class="lb">⊕; becomes a BAD token so the parser does not cascade</text>
+<text x="20" y="784" class="lb" fill="#555">Accepting actions are shaded orange, error actions red. After every token the scanner returns to START (maximal munch: it always consumes the longest possible lexeme).</text>
+</svg></body></html>
