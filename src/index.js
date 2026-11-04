@@ -5,6 +5,6 @@
  *   const GateLang = require('./src');
  */
 'use strict';
-const FILES = ['tokens', 'catalog', 'diagnostics', 'lexer'];
+const FILES = ['tokens', 'catalog', 'diagnostics', 'lexer', 'ast', 'parser'];
 for (const f of FILES) require('./' + f + '.js');
 module.exports = globalThis.GateLang;
