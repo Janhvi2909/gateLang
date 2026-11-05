@@ -1,0 +1,6 @@
+// Half subtractor: a - b
+input a, b;
+output diff, borrow;
+
+diff   = a XOR b;
+borrow = NOT a AND b;

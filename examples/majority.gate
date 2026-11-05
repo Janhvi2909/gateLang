@@ -1,0 +1,5 @@
+// 3-input majority voter
+input a, b, c;
+output m;
+
+m = (a AND b) OR (a AND c) OR (b AND c);

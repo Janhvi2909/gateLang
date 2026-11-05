@@ -1,0 +1,5 @@
+// 2-to-1 multiplexer
+input a, b, sel;
+output y;
+
+y = (a AND NOT sel) OR (b AND sel);

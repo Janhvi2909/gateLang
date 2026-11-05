@@ -1,0 +1,8 @@
+// Full adder: adds three bits a + b + cin
+input a, b, cin;
+output sum, cout;
+wire p;                 // "propagate": a and b differ
+
+p    = a XOR b;
+sum  = p XOR cin;
+cout = (a AND b) OR (cin AND p);
