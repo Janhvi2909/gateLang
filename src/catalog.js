@@ -156,6 +156,80 @@
     'Remove them.',
     L('input a;', 'output y;', 'y = NOT ((a));'));
 
+  /* ───────────── Phase 3: semantic ───────────── */
+  def('E301', 'semantic', 'Undeclared identifier',
+    'A name is used in an expression but never declared. The compiler suggests the closest declared name when one is similar.',
+    'Declare it (input, output or wire) or fix the spelling.',
+    L('input carry, b;', 'output y;', 'y = cary AND b;'));
+  def('E302', 'semantic', 'Duplicate declaration',
+    'The same name is declared twice with the same kind.',
+    'Remove the second declaration.',
+    L('input a, a;', 'output y;', 'y = NOT a;'));
+  def('E303', 'semantic', 'Conflicting declarations',
+    'The same name is declared with two different kinds (for example both input and output).',
+    'Rename one of the signals.',
+    L('input a, x;', 'output y, x;', 'y = a AND x;'));
+  def('E304', 'semantic', 'Assignment to an input',
+    'Inputs are driven from outside the circuit, so they cannot be assigned.',
+    'Assign to an output or wire instead.',
+    L('input a, b;', 'output y;', 'a = b;', 'y = NOT a;'));
+  def('E305', 'semantic', 'Assignment to an undeclared signal',
+    'The left side of = names a signal that was never declared.',
+    'Declare it first: output z; or wire z;',
+    L('input a;', 'output y;', 'y = NOT a;', 'z = a;'));
+  def('E306', 'semantic', 'Multiple drivers',
+    'A signal is assigned more than once. In hardware a wire can have only one driver; two would short-circuit.',
+    'Keep one assignment, or combine the expressions with AND/OR.',
+    L('input a, b;', 'output y;', 'y = a AND b;', 'y = a OR b;'));
+  def('E307', 'semantic', 'Undriven output',
+    'An output is declared but never assigned, so its value would be undefined.',
+    'Assign it, or remove the declaration.',
+    L('input a;', 'output y, z;', 'y = NOT a;'));
+  def('E308', 'semantic', 'Undriven wire',
+    'A wire is read in an expression but never assigned, so it would float.',
+    'Assign the wire before relying on it.',
+    L('input a;', 'output y;', 'wire t;', 'y = a AND t;'));
+  def('E309', 'semantic', 'Combinational loop',
+    'Signals depend on each other in a cycle. Combinational logic must be acyclic; a loop would latch or oscillate. Found with a depth-first search over the dependency graph.',
+    'Break the cycle so that every signal depends only on inputs and earlier signals.',
+    L('input a, b;', 'output x, y;', 'x = a AND y;', 'y = x OR b;'));
+  def('E310', 'semantic', 'Self-dependency',
+    'A signal is defined in terms of itself, the shortest possible combinational loop.',
+    'Remove the signal from its own expression.',
+    L('input a;', 'output x;', 'x = x AND a;'));
+  def('E311', 'semantic', 'No outputs',
+    'The program declares no outputs, so there is nothing to compute.',
+    'Declare at least one output and assign it.',
+    L('input a, b;', '// outputs are missing'));
+  def('W301', 'semantic', 'Unused input',
+    'An input is declared but never read.',
+    'Use it or remove it.',
+    L('input a, b, c;', 'output y;', 'y = a AND b;'));
+  def('W302', 'semantic', 'Unused wire',
+    'A wire is assigned but never read, so its logic is dead.',
+    'Use the wire or delete it. The optimizer removes it anyway.',
+    L('input a, b;', 'output y;', 'wire t;', 't = a OR b;', 'y = a AND b;'));
+  def('W303', 'semantic', 'Wire never used',
+    'A wire is declared but neither assigned nor read.',
+    'Delete the declaration.',
+    L('input a;', 'output y;', 'wire t;', 'y = NOT a;'));
+  def('W304', 'semantic', 'Output copies an input',
+    'An output is assigned directly from an input. It needs no gates and acts as a buffer.',
+    'Check that this is intended.',
+    L('input a;', 'output y;', 'y = a;'));
+  def('W305', 'semantic', 'Constant output',
+    'An output is assigned a constant, so it never changes.',
+    'Check that this is intended.',
+    L('input a;', 'output y, z;', 'y = NOT a;', 'z = 1;'));
+  def('W306', 'semantic', 'Names differ only by case',
+    'Two declared names differ only in letter case. Names are case-sensitive, so this is legal but easy to confuse.',
+    'Rename one of them.',
+    L('input carry, Carry;', 'output y;', 'y = carry AND Carry;'));
+  def('I301', 'semantic', 'Output used internally',
+    'An output also feeds other logic. This is allowed, for example when a carry output drives the next stage.',
+    null,
+    L('input a, b;', 'output x, y;', 'x = a AND b;', 'y = x OR a;'));
+
   /* ───────────── limits & internal ───────────── */
   def('E901', 'internal', 'Too many errors',
     'After 50 errors the compiler stops reporting more, because later errors are usually consequences of earlier ones.',
