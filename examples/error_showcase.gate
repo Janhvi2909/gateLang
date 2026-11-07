@@ -1,0 +1,15 @@
+// Ten different mistakes. The compiler reports all of them at once.
+input a, b, c, carry;
+input a;
+output sum, cout, y, z, u, v;
+wire t;
+
+sum  = a XOR b XOR cary;
+cout = (a AND b) OR (carry AND c;
+y    = a b;
+z    = a AND 2;
+b    = a OR c;
+u    = v AND t;
+v    = u OR c;
+z    = NOT c;
+w    = a NAND c;

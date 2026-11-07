@@ -1,0 +1,9 @@
+// This compiles, but look at the warnings.
+input a, b, c, d, spare;
+output f, g, h, k;
+wire unused_w;
+
+f = a AND b OR c;          // precedence is easy to misread
+g = a OR NOT a;            // always 1
+h = (b) OR (b AND d);      // d never matters, and (b) needs no brackets
+k = (b AND a) OR c;        // same function as f

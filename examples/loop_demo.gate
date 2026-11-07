@@ -1,0 +1,7 @@
+// x depends on z, z depends on y, y depends on x: a loop.
+input a, b;
+output x, y, z;
+
+x = a AND z;
+y = x OR b;
+z = NOT y;
