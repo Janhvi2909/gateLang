@@ -1,0 +1,8 @@
+// 2-to-4 decoder
+input a1, a0;
+output y0, y1, y2, y3;
+
+y0 = NOT a1 AND NOT a0;
+y1 = NOT a1 AND a0;
+y2 = a1 AND NOT a0;
+y3 = a1 AND a0;

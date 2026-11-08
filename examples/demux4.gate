@@ -1,0 +1,8 @@
+// 1-to-4 demultiplexer
+input d, s1, s0;
+output y0, y1, y2, y3;
+
+y0 = d AND NOT s1 AND NOT s0;
+y1 = d AND NOT s1 AND s0;
+y2 = d AND s1 AND NOT s0;
+y3 = d AND s1 AND s0;

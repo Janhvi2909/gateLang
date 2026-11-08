@@ -1,0 +1,5 @@
+// Even parity checker: err = 1 if a bit flipped
+input d3, d2, d1, d0, p;
+output err;
+
+err = d3 XOR d2 XOR d1 XOR d0 XOR p;

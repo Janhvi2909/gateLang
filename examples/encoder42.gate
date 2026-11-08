@@ -1,0 +1,7 @@
+// 4-to-2 priority encoder (d3 has the highest priority)
+input d3, d2, d1, d0;
+output y1, y0, valid;
+
+y1    = d3 OR d2;
+y0    = d3 OR (d1 AND NOT d2);
+valid = d3 OR d2 OR d1 OR d0;
