@@ -230,6 +230,34 @@
     null,
     L('input a, b;', 'output x, y;', 'x = a AND b;', 'y = x OR a;'));
 
+  /* ───────────── Phase 5: optimization ───────────── */
+  def('W501', 'optimization', 'Tautology',
+    'The output is 1 for every combination of inputs (found by exhaustive bit-parallel evaluation).',
+    'Check the logic; the output could be replaced by the constant 1.',
+    L('input a;', 'output y;', 'y = a OR NOT a;'));
+  def('W502', 'optimization', 'Contradiction',
+    'The output is 0 for every combination of inputs.',
+    'Check the logic; the output could be replaced by the constant 0.',
+    L('input a;', 'output y;', 'y = a AND NOT a;'));
+  def('W503', 'optimization', 'Input has no effect',
+    'The input is used in an expression, but no output actually depends on it. For example, by absorption a OR (a AND b) = a.',
+    'Simplify the expression or remove the input.',
+    L('input a, b;', 'output y;', 'y = a OR (a AND b);'));
+  def('W504', 'optimization', 'Equivalent outputs',
+    'Two outputs compute exactly the same Boolean function, even if they are written differently.',
+    'Keep one output, or check that they were meant to differ.',
+    L('input a, b;', 'output f, g;', 'f = a AND b;', 'g = NOT (a NAND b);'));
+  def('W505', 'optimization', 'Two-level minimisation skipped',
+    'Quine–McCluskey (-O2) runs only for outputs that depend on at most 10 inputs, because its cost grows exponentially. The -O1 result is used instead.',
+    'No action needed; the -O1 result is still verified.',
+    L('input ' + names(11).join(', ') + ';', 'output y;', 'y = ' + names(11).join(' XOR ') + ';'), { opt: 'O2' });
+  def('I501', 'optimization', 'Rewrite applied',
+    'One optimization rule fired. Each rewrite is listed in the optimization log with the law used and the source line.',
+    null, null);
+  def('I502', 'optimization', 'Optimization summary',
+    'A summary of gate count, logic depth and the equivalence check after optimization.',
+    null, L('input a, b;', 'output y;', 'y = NOT NOT (a AND b);'));
+
   /* ───────────── limits & internal ───────────── */
   def('E901', 'internal', 'Too many errors',
     'After 50 errors the compiler stops reporting more, because later errors are usually consequences of earlier ones.',
