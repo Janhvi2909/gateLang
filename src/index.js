@@ -6,6 +6,6 @@
  */
 'use strict';
 const FILES = ['tokens', 'catalog', 'diagnostics', 'lexer', 'ast', 'parser', 'symtab', 'semantic',
-  'icg', 'simulator', 'verify'];
+  'icg', 'simulator', 'verify', 'qm'];
 for (const f of FILES) require('./' + f + '.js');
 module.exports = globalThis.GateLang;
