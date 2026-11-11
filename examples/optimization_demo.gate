@@ -1,0 +1,6 @@
+// Every line here hides redundant logic.
+input a, b, c;
+output f, g;
+
+f = (a AND b) OR (b AND a) OR NOT NOT c;   // CSE, idempotent, involution
+g = (a OR 0) AND (a OR b);                 // identity, absorption

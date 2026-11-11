@@ -1,0 +1,6 @@
+// -O1 leaves these alone. Switch to -O2 to run Quine–McCluskey.
+input a, b, c;
+output x, y;
+
+x = (a AND b) OR (a AND NOT b) OR (NOT a AND b);                   // = a OR b
+y = (a AND NOT b AND c) OR (a AND b AND c) OR (NOT a AND b AND c); // = (a OR b) AND c
