@@ -1,5 +1,5 @@
 /*
- * GateLang — diagnostic catalog
+ * GateLang — diagnostic catalog (62 entries)
  *
  * Single source of truth for every error (E), warning (W) and info note (I)
  * the compiler can produce. The CLI (--explain), the UI's Catalog tab, the
@@ -257,6 +257,24 @@
   def('I502', 'optimization', 'Optimization summary',
     'A summary of gate count, logic depth and the equivalence check after optimization.',
     null, L('input a, b;', 'output y;', 'y = NOT NOT (a AND b);'));
+
+  /* ───────────── Phase 6: code generation ───────────── */
+  def('W601', 'codegen', 'Truth table too large to display',
+    'Above 16 inputs the truth table is not fully displayed. Above 20 inputs it is not computed, and equivalence is checked with 4,096 random input vectors instead.',
+    'Use the netlist or Verilog output, or split the circuit.',
+    L('input ' + names(17).join(', ') + ';', 'output y;', 'y = ' + names(17).join(' XOR ') + ';'));
+  def('W602', 'codegen', 'Circuit too large to draw clearly',
+    'Circuits with more than 80 gates are still drawn, but they are hard to read. Use zoom, or the netlist view.',
+    'Raise the optimization level or split the design.',
+    L('input a, b;', 'output y;', 'y = ' + range(41, () => 'a XOR b').join(' XOR ') + ';'), { opt: 'O0' });
+  def('W603', 'codegen', 'High fan-out',
+    'One signal drives more than 8 gate inputs. Real hardware would need a buffer to keep the signal fast and clean.',
+    'Insert buffers (wires) or restructure the logic.',
+    L('input s, ' + names(9).join(', ') + ';', 'output ' + range(9, (i) => 'y' + i).join(', ') + ';', ...range(9, (i) => `y${i} = s AND x${i};`)));
+  def('W604', 'codegen', 'Deep logic path',
+    'The longest path from an input to an output passes through more than 10 gates. Each gate adds propagation delay.',
+    'Balance the expression with parentheses, for example (a XOR b) XOR (c XOR d).',
+    L('input ' + names(12).join(', ') + ';', 'output y;', 'y = ' + names(12).join(' XOR ') + ';'));
 
   /* ───────────── limits & internal ───────────── */
   def('E901', 'internal', 'Too many errors',
