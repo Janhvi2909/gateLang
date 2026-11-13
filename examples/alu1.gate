@@ -1,0 +1,13 @@
+// 1-bit ALU.  s1 s0: 00 AND, 01 OR, 10 XOR, 11 ADD
+input a, b, cin, s1, s0;
+output result, cout;
+wire op_and, op_or, op_xor, op_sum;
+
+op_and = a AND b;
+op_or  = a OR b;
+op_xor = a XOR b;
+op_sum = op_xor XOR cin;
+
+result = (op_and AND NOT s1 AND NOT s0) OR (op_or  AND NOT s1 AND s0)
+      OR (op_xor AND s1 AND NOT s0)      OR (op_sum AND s1 AND s0);
+cout   = s1 AND s0 AND ((a AND b) OR (cin AND op_xor));

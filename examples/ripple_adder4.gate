@@ -1,0 +1,9 @@
+// 4-bit ripple-carry adder: s = a + b + cin
+input a3, a2, a1, a0, b3, b2, b1, b0, cin;
+output s3, s2, s1, s0, cout;
+wire c1, c2, c3, p0, p1, p2, p3;
+
+p0 = a0 XOR b0;   s0 = p0 XOR cin;   c1 = (a0 AND b0) OR (p0 AND cin);
+p1 = a1 XOR b1;   s1 = p1 XOR c1;    c2 = (a1 AND b1) OR (p1 AND c1);
+p2 = a2 XOR b2;   s2 = p2 XOR c2;    c3 = (a2 AND b2) OR (p2 AND c2);
+p3 = a3 XOR b3;   s3 = p3 XOR c3;    cout = (a3 AND b3) OR (p3 AND c3);
