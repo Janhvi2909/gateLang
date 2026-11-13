@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A six-phase compiler that turns Boolean logic expressions into verified gate-level circuits, with an interactive web UI.",
   "main": "src/index.js",
+  "bin": { "gatec": "cli/gatec.js" },
   "keywords": ["compiler", "compiler-design", "logic-gates", "boolean-algebra", "quine-mccluskey", "verilog", "education"],
   "license": "MIT",
   "engines": { "node": ">=16" }
