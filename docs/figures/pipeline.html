@@ -1,0 +1,26 @@
+<html><body style="margin:0;background:#fff">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker></defs>
+<style>.b{stroke-width:2;rx:10}.fe{fill:#E3F1EF;stroke:#2E6F68}.be{fill:#FBEBD9;stroke:#B5651D}.t{font-size:19px;font-weight:bold;fill:#111}.s{font-size:15px;fill:#333}.e{font-size:14px;fill:#555;font-style:italic}.l{stroke:#444;stroke-width:2;fill:none;marker-end:url(#a)}.d{stroke:#999;stroke-width:1.5;stroke-dasharray:5 4}</style>
+<text x="20" y="34" font-size="15" fill="#2E6F68" font-weight="bold">FRONT END (analysis): always runs to the end to collect every error</text>
+<text x="20" y="254" font-size="15" fill="#B5651D" font-weight="bold">BACK END (synthesis): runs only if the front end found no errors</text>
+<rect x="20" y="90" width="120" height="60" fill="#fff" stroke="#777" stroke-width="2" rx="8"/><text x="80" y="126" text-anchor="middle" class="s">source.gate</text>
+<path class="l" d="M140 120 H200"/>
+<rect class="b fe" x="200" y="60" width="250" height="120"/><text x="325" y="100" text-anchor="middle" class="t">1  Lexical analysis</text><text x="325" y="128" text-anchor="middle" class="s">hand-written DFA scanner</text><text x="325" y="152" text-anchor="middle" class="e">E1xx, W101</text>
+<path class="l" d="M450 120 H560"/><text x="505" y="108" text-anchor="middle" class="s">tokens</text>
+<rect class="b fe" x="560" y="60" width="250" height="120"/><text x="685" y="100" text-anchor="middle" class="t">2  Syntax analysis</text><text x="685" y="128" text-anchor="middle" class="s">LL(1) recursive descent</text><text x="685" y="152" text-anchor="middle" class="e">E2xx, W2xx</text>
+<path class="l" d="M810 120 H920"/><text x="865" y="108" text-anchor="middle" class="s">AST</text>
+<rect class="b fe" x="920" y="60" width="250" height="120"/><text x="1045" y="100" text-anchor="middle" class="t">3  Semantic analysis</text><text x="1045" y="128" text-anchor="middle" class="s">checks, DFS, topo sort</text><text x="1045" y="152" text-anchor="middle" class="e">E3xx, W3xx</text>
+<path class="l" d="M1170 120 H1230 V215 H180 V340 H200"/><text x="700" y="207" text-anchor="middle" class="s">annotated AST + evaluation order</text>
+<rect class="b be" x="200" y="280" width="250" height="120"/><text x="325" y="320" text-anchor="middle" class="t">4  Intermediate code</text><text x="325" y="348" text-anchor="middle" class="s">three-address code</text><text x="325" y="372" text-anchor="middle" class="e">quadruples</text>
+<path class="l" d="M450 340 H560"/><text x="505" y="328" text-anchor="middle" class="s">TAC</text>
+<rect class="b be" x="560" y="280" width="250" height="120"/><text x="685" y="320" text-anchor="middle" class="t">5  Optimization</text><text x="685" y="348" text-anchor="middle" class="s">-O0 / -O1 / -O2 + proof</text><text x="685" y="372" text-anchor="middle" class="e">W5xx, W900</text>
+<path class="l" d="M810 340 H920"/><text x="865" y="328" text-anchor="middle" class="s">optimized TAC</text>
+<rect class="b be" x="920" y="280" width="250" height="120"/><text x="1045" y="320" text-anchor="middle" class="t">6  Code generation</text><text x="1045" y="348" text-anchor="middle" class="s">gate-library mapping</text><text x="1045" y="372" text-anchor="middle" class="e">W6xx</text>
+<path class="l" d="M1170 340 H1230"/>
+<rect x="1230" y="280" width="150" height="120" fill="#fff" stroke="#777" stroke-width="2" rx="8"/><text x="1305" y="316" text-anchor="middle" class="s">circuit</text><text x="1305" y="338" text-anchor="middle" class="s">truth table</text><text x="1305" y="360" text-anchor="middle" class="s">netlist</text><text x="1305" y="382" text-anchor="middle" class="s">Verilog</text>
+<rect x="200" y="430" width="970" height="34" fill="#F1F1F1" stroke="#888" stroke-width="1.5" rx="6"/><text x="685" y="453" text-anchor="middle" class="s" font-weight="bold">Symbol table manager (hash map, O(1)) — read and written by every phase</text>
+<rect x="200" y="474" width="970" height="34" fill="#FDECEC" stroke="#C0504D" stroke-width="1.5" rx="6"/><text x="685" y="497" text-anchor="middle" class="s" font-weight="bold">Error handler — 62 coded diagnostics, recovery, 50-error cap, -Werror</text>
+
+<line class="d" x1="325" y1="400" x2="325" y2="430"/><line class="d" x1="685" y1="400" x2="685" y2="430"/><line class="d" x1="1045" y1="400" x2="1045" y2="430"/>
+</svg></body></html>
