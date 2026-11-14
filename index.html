@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GateLang · logic circuit compiler</title>
+  <meta name="description" content="GateLang: a six-phase compiler that turns Boolean expressions into verified logic circuits.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Cpath d='M4 3h14a12 12 0 0 1 0 24H4z' fill='%2311262b' stroke='%23e39a4f' stroke-width='3'/%3E%3Ccircle cx='34' cy='15' r='3.5' fill='%2311262b' stroke='%23e39a4f' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="ui/styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 44 30" aria-hidden="true"><path d="M3 3h15a12 12 0 0 1 0 24H3z" fill="#17323a" stroke="#e39a4f" stroke-width="2.5"/><circle cx="35" cy="15" r="3.6" fill="#17323a" stroke="#e39a4f" stroke-width="2.5"/><path d="M39 15h5M0 10h3M0 20h3" stroke="#e39a4f" stroke-width="2.5"/></svg>
+      <div><h1>GateLang</h1><p>A six-phase compiler for logic circuits</p></div>
+    </div>
+    <label class="control">Example <select id="example" class="select"></select></label>
+    <div class="control"><span id="opt-label">Optimization</span>
+      <div class="seg" id="opt" role="group" aria-labelledby="opt-label"><button data-v="O0">-O0</button><button data-v="O1" aria-pressed="true">-O1</button><button data-v="O2">-O2</button></div>
+    </div>
+    <div class="control"><span id="target-label">Target</span>
+      <div class="seg" id="target" role="group" aria-labelledby="target-label"><button data-v="std" aria-pressed="true">Standard</button><button data-v="nand">NAND</button><button data-v="nor">NOR</button></div>
+    </div>
+    <label class="check"><input type="checkbox" id="auto" checked> Compile as I type</label>
+    <button class="btn primary" id="compile">Compile <kbd>Ctrl ↵</kbd></button>
+    <button class="btn ghost small" id="share" title="Copy a link that opens this exact program">Share link</button>
+    <button class="btn ghost small" id="large" aria-pressed="false" title="Bigger text for projectors">Large text</button>
+    <button class="btn ghost small" id="help-btn" title="Language reference and shortcuts">Help</button>
+  </header>
+
+  <nav class="pipeline" aria-label="Compiler phases">
+    <div class="trace" id="trace"><div class="current"></div></div>
+    <div class="side-tabs">
+      <button class="btn" data-tab="catalog">Error catalog <span class="mono" id="cat-count" style="color:var(--ink-3)"></span></button>
+      <button class="btn" data-tab="tests">Test suite</button>
+    </div>
+  </nav>
+  <div class="summary" id="summary" aria-live="polite"></div>
+
+  <main class="work">
+    <div class="col">
+      <section class="box" aria-label="Source code">
+        <div class="box-head">
+          <h2 id="fname">main.gate</h2><span class="muted" id="cursor">Ln 1, Col 1</span><span class="grow"></span>
+          <button class="btn small ghost" id="open-file">Open file</button>
+          <button class="btn small ghost" id="save-file">Save</button>
+        </div>
+        <div class="editor" id="editor"></div>
+      </section>
+      <section class="box" aria-label="Diagnostics">
+        <div class="box-head"><h2>Diagnostics</h2><div class="diag-filters" id="filters"></div><span class="grow"></span><button class="btn small ghost" id="copy-diag">Copy as text</button></div>
+        <div class="diag-list" id="diags"></div>
+      </section>
+    </div>
+    <section class="box panel-box" id="panel" aria-live="off"></section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<input type="file" id="file" accept=".gate,.txt" hidden>
+
+<dialog id="help">
+  <div class="dlg">
+    <h2>GateLang in one minute</h2>
+    <pre class="codeblock">// comments start with //
+input a, b, cin;          // external inputs
+output sum, cout;         // outputs: each assigned exactly once
+wire t;                   // optional internal signals
+
+t    = a XOR b;
+sum  = t XOR cin;
+cout = (a AND b) OR (cin AND t);</pre>
+    <table>
+      <tr><td>NOT  !  ~</td><td>negation, binds tightest</td></tr>
+      <tr><td>AND  NAND  &amp;</td><td>next</td></tr>
+      <tr><td>XOR  XNOR  ^</td><td>next</td></tr>
+      <tr><td>OR  NOR  |</td><td>loosest; use parentheses to group</td></tr>
+      <tr><td>0  1</td><td>the only constants</td></tr>
+    </table>
+    <table>
+      <tr><td>Ctrl + Enter</td><td>compile</td></tr>
+      <tr><td>Alt + 1 … 6</td><td>open phase 1 to 6</td></tr>
+      <tr><td>Alt + 7, Alt + 8</td><td>error catalog, test suite</td></tr>
+      <tr><td>Ctrl + /</td><td>comment or uncomment lines</td></tr>
+    </table>
+    <button class="btn" id="help-close">Close</button>
+  </div>
+</dialog>
+
+<!-- compiler (src/) -->
+<script src="src/tokens.js"></script>
+<script src="src/catalog.js"></script>
+<script src="src/diagnostics.js"></script>
+<script src="src/lexer.js"></script>
+<script src="src/ast.js"></script>
+<script src="src/parser.js"></script>
+<script src="src/symtab.js"></script>
+<script src="src/semantic.js"></script>
+<script src="src/icg.js"></script>
+<script src="src/simulator.js"></script>
+<script src="src/verify.js"></script>
+<script src="src/qm.js"></script>
+<script src="src/optimizer.js"></script>
+<script src="src/codegen.js"></script>
+<script src="src/compiler.js"></script>
+<script src="src/examples.js"></script>
+<script src="src/selftest.js"></script>
+<!-- user interface (ui/) -->
+<script src="ui/editor.js"></script>
+<script src="ui/render/tree.js"></script>
+<script src="ui/render/circuit.js"></script>
+<script src="ui/render/table.js"></script>
+<script src="ui/app.js"></script>
+</body>
+</html>
