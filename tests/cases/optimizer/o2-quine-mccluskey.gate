@@ -1,0 +1,10 @@
+// test: optimizer, o2 quine mccluskey
+// gates: 3
+// laws: Quine–McCluskey
+// opts: O2
+// -O2 demo: Quine–McCluskey finds the minimal sum of products.
+// Compare the gate count at -O1 and -O2.
+input a, b, c;
+output f;
+
+f = (a AND b AND c) OR (a AND b AND NOT c) OR (a AND NOT b AND c);

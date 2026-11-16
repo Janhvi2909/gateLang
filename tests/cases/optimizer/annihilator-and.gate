@@ -1,0 +1,7 @@
+// test: optimizer, annihilator and
+// gates: 0
+// laws: Annihilator
+// opts: O1
+input a;
+output y;
+y = a AND 0;

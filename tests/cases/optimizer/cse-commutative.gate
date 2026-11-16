@@ -1,0 +1,7 @@
+// test: optimizer, cse commutative
+// gates: 0
+// laws: CSE, Self-inverse, Identity
+// opts: O1
+input a, b, c;
+output y;
+y = (a AND b) XOR (b AND a) XOR c;

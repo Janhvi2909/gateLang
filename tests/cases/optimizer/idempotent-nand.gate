@@ -1,0 +1,7 @@
+// test: optimizer, idempotent nand
+// gates: 1
+// laws: Idempotent
+// opts: O1
+input a;
+output y;
+y = a NAND a;

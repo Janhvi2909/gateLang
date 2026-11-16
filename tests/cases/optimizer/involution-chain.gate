@@ -1,0 +1,7 @@
+// test: optimizer, involution chain
+// gates: 0
+// laws: Involution
+// opts: O1
+input a;
+output y;
+y = NOT NOT NOT NOT a;

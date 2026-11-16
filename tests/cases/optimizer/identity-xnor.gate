@@ -1,0 +1,7 @@
+// test: optimizer, identity xnor
+// gates: 0
+// laws: Identity
+// opts: O1
+input a;
+output y;
+y = a XNOR 1;

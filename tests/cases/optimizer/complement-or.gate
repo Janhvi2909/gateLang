@@ -1,0 +1,7 @@
+// test: optimizer, complement or
+// gates: 0
+// laws: Complement
+// opts: O1
+input a;
+output y;
+y = a OR NOT a;

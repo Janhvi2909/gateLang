@@ -1,0 +1,7 @@
+// test: optimizer, absorption or
+// gates: 0
+// laws: Absorption
+// opts: O1
+input a, b;
+output y;
+y = a OR (a AND b);

@@ -1,0 +1,7 @@
+// test: optimizer, idempotent and
+// gates: 0
+// laws: Idempotent
+// opts: O1
+input a;
+output y;
+y = a AND a;

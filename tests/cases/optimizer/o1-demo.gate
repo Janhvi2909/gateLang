@@ -1,0 +1,10 @@
+// test: optimizer, o1 demo
+// gates: 2
+// laws: CSE, Idempotent, Involution, Identity, Absorption, Dead code
+// opts: O1
+// Optimization demo: compile at -O0, then -O1, and compare
+input a, b, c;
+output f, g;
+
+f = (a AND b) OR (b AND a) OR NOT NOT c;
+g = (a OR 0) AND (a OR b);

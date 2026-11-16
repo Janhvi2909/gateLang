@@ -1,0 +1,7 @@
+// test: optimizer, constant folding
+// gates: 0
+// laws: Constant folding, Identity
+// opts: O1
+input a;
+output y;
+y = a AND (1 XOR 0);

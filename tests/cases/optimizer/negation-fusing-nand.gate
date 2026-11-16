@@ -1,0 +1,7 @@
+// test: optimizer, negation fusing nand
+// gates: 1
+// laws: Negation fusing
+// opts: O1
+input a, b;
+output y;
+y = NOT (a AND b);

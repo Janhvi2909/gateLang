@@ -1,0 +1,9 @@
+// test: optimizer, dead code
+// gates: 1
+// laws: Dead code
+// opts: O1
+input a, b;
+output y;
+wire t;
+t = a AND b;
+y = NOT a;

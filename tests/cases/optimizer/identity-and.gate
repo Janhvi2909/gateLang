@@ -1,0 +1,7 @@
+// test: optimizer, identity and
+// gates: 0
+// laws: Identity
+// opts: O1
+input a;
+output y;
+y = a AND 1;

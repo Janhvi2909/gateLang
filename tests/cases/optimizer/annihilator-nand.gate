@@ -1,0 +1,7 @@
+// test: optimizer, annihilator nand
+// gates: 0
+// laws: Annihilator
+// opts: O1
+input a;
+output y;
+y = a NAND 0;

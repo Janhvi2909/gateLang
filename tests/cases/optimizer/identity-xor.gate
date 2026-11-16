@@ -1,0 +1,7 @@
+// test: optimizer, identity xor
+// gates: 0
+// laws: Identity
+// opts: O1
+input a;
+output y;
+y = a XOR 0;

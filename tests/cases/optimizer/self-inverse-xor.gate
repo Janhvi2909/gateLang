@@ -1,0 +1,7 @@
+// test: optimizer, self inverse xor
+// gates: 0
+// laws: Self-inverse
+// opts: O1
+input a;
+output y;
+y = a XOR a;

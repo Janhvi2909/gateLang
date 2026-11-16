@@ -1,0 +1,7 @@
+// test: optimizer, inversion xor
+// gates: 1
+// laws: Inversion
+// opts: O1
+input a;
+output y;
+y = a XOR 1;
