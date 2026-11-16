@@ -1,0 +1,5 @@
+// expect: none
+// test: I502 Optimization summary
+input a, b;
+output y;
+y = NOT NOT (a AND b);

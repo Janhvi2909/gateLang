@@ -1,0 +1,6 @@
+// expect: W305@6:1
+// test: W305 Constant output
+input a;
+output y, z;
+y = NOT a;
+z = 1;

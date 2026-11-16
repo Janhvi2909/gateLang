@@ -1,0 +1,5 @@
+// expect: W501@5:1
+// test: W501 Tautology
+input a;
+output y;
+y = a OR NOT a;

@@ -1,0 +1,6 @@
+// expect: W303@5:6
+// test: W303 Wire never used
+input a;
+output y;
+wire t;
+y = NOT a;

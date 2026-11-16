@@ -1,0 +1,6 @@
+// expect: W504@6:1
+// test: W504 Equivalent outputs
+input a, b;
+output f, g;
+f = a AND b;
+g = NOT (a NAND b);

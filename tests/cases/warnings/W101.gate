@@ -1,0 +1,5 @@
+// expect: W101@5:7
+// test: W101 C-style operator
+input a, b;
+output y;
+y = a && b;

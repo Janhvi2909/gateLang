@@ -1,0 +1,5 @@
+// expect: W204@5:10
+// test: W204 Redundant parentheses
+input a;
+output y;
+y = NOT ((a));

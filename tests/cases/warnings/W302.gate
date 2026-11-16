@@ -1,0 +1,7 @@
+// expect: W302@5:6
+// test: W302 Unused wire
+input a, b;
+output y;
+wire t;
+t = a OR b;
+y = a AND b;

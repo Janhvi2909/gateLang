@@ -1,0 +1,6 @@
+// expect: I301@6:5
+// test: I301 Output used internally
+input a, b;
+output x, y;
+x = a AND b;
+y = x OR a;

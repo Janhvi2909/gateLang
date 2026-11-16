@@ -1,0 +1,6 @@
+// expect: W603@4:7 W603@4:10 W602 W604
+// test: W602 Circuit too large to draw clearly
+// opts: O0
+input a, b;
+output y;
+y = a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b XOR a XOR b;

@@ -1,0 +1,5 @@
+// expect: W202@5:11
+// test: W202 Empty statement
+input a;
+output y;
+y = NOT a;;

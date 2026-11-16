@@ -1,0 +1,5 @@
+// expect: W301@3:13
+// test: W301 Unused input
+input a, b, c;
+output y;
+y = a AND b;

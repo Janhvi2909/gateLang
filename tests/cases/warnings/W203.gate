@@ -1,0 +1,5 @@
+// expect: W203@5:5
+// test: W203 Non-associative chain
+input a, b, c;
+output y;
+y = a NAND b NAND c;

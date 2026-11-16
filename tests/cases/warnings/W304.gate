@@ -1,0 +1,5 @@
+// expect: W304@5:1
+// test: W304 Output copies an input
+input a;
+output y;
+y = a;

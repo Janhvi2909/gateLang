@@ -1,0 +1,5 @@
+// expect: W306@3:14
+// test: W306 Names differ only by case
+input carry, Carry;
+output y;
+y = carry AND Carry;

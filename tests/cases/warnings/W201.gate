@@ -1,0 +1,5 @@
+// expect: W201@5:5
+// test: W201 Unclear precedence
+input a, b, c;
+output y;
+y = a AND b OR c;

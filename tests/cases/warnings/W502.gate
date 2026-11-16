@@ -1,0 +1,5 @@
+// expect: W502@5:1
+// test: W502 Contradiction
+input a;
+output y;
+y = a AND NOT a;
