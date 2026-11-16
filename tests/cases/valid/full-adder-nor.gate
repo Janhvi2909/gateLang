@@ -1,0 +1,11 @@
+// test: full adder mapped to NOR-only gates
+// expect: none
+// minterms sum: 1,2,4,7
+// minterms cout: 3,5,6,7
+// opts: O1 nor
+// Full adder: adds three bits
+input a, b, cin;
+output sum, cout;
+
+sum  = a XOR b XOR cin;
+cout = (a AND b) OR (cin AND (a XOR b));

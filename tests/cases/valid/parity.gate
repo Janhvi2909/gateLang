@@ -1,0 +1,8 @@
+// test: Even parity generator (hand-written truth table)
+// expect: none
+// minterms p: 1,2,4,7,8,11,13,14
+// Even parity bit for 4 data bits
+input d0, d1, d2, d3;
+output p;
+
+p = (d0 XOR d1) XOR (d2 XOR d3);

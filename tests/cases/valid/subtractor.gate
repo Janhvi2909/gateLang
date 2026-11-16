@@ -1,0 +1,12 @@
+// test: Full subtractor (hand-written truth table)
+// expect: none
+// minterms diff: 1,2,4,7
+// minterms bout: 1,2,3,7
+// Full subtractor: a - b - bin
+input a, b, bin;
+output diff, bout;
+wire d1;
+
+d1   = a XOR b;
+diff = d1 XOR bin;
+bout = (NOT a AND b) OR (NOT d1 AND bin);

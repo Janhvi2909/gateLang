@@ -1,0 +1,10 @@
+// test: Half adder (hand-written truth table)
+// expect: none
+// minterms sum: 1,2
+// minterms carry: 3
+// Half adder: adds two bits
+input a, b;
+output sum, carry;
+
+sum   = a XOR b;
+carry = a AND b;

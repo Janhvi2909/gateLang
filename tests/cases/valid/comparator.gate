@@ -1,0 +1,15 @@
+// test: 2-bit comparator (hand-written truth table)
+// expect: none
+// minterms eq: 0,5,10,15
+// minterms gt: 4,8,9,12,13,14
+// minterms lt: 1,2,3,6,7,11
+// 2-bit magnitude comparator: A = a1 a0, B = b1 b0
+input a1, a0, b1, b0;
+output gt, eq, lt;
+wire e1, e0;
+
+e1 = a1 XNOR b1;          // high bits equal
+e0 = a0 XNOR b0;          // low bits equal
+eq = e1 AND e0;
+gt = (a1 AND NOT b1) OR (e1 AND a0 AND NOT b0);
+lt = (NOT a1 AND b1) OR (e1 AND NOT a0 AND b0);

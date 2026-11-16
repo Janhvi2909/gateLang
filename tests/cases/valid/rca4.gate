@@ -1,0 +1,16 @@
+// test: 4-bit ripple-carry adder, every row checked against a reference model
+// expect: none
+// check: adder4
+// 4-bit ripple-carry adder: S = A + B + cin
+input a0, a1, a2, a3, b0, b1, b2, b3, cin;
+output s0, s1, s2, s3, cout;
+wire c1, c2, c3;
+
+s0 = a0 XOR b0 XOR cin;
+c1 = (a0 AND b0) OR (cin AND (a0 XOR b0));
+s1 = a1 XOR b1 XOR c1;
+c2 = (a1 AND b1) OR (c1 AND (a1 XOR b1));
+s2 = a2 XOR b2 XOR c2;
+c3 = (a2 AND b2) OR (c2 AND (a2 XOR b2));
+s3 = a3 XOR b3 XOR c3;
+cout = (a3 AND b3) OR (c3 AND (a3 XOR b3));

@@ -1,0 +1,11 @@
+// test: 4-to-1 multiplexer, every row checked against a reference model
+// expect: none
+// check: mux4
+// 4-to-1 multiplexer: s1 s0 select one of d0..d3
+input d0, d1, d2, d3, s1, s0;
+output y;
+
+y = (d0 AND NOT s1 AND NOT s0)
+  OR (d1 AND NOT s1 AND s0)
+  OR (d2 AND s1 AND NOT s0)
+  OR (d3 AND s1 AND s0);

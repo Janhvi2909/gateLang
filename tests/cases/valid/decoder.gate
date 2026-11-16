@@ -1,0 +1,14 @@
+// test: 2-to-4 decoder (hand-written truth table)
+// expect: none
+// minterms y0: 4
+// minterms y1: 5
+// minterms y2: 6
+// minterms y3: 7
+// 2-to-4 decoder with enable
+input en, a1, a0;
+output y0, y1, y2, y3;
+
+y0 = en AND NOT a1 AND NOT a0;
+y1 = en AND NOT a1 AND a0;
+y2 = en AND a1 AND NOT a0;
+y3 = en AND a1 AND a0;

@@ -1,0 +1,63 @@
+// test: BCD to 7-segment decoder, every row checked against a reference model
+// expect: W604
+// check: sevenseg
+// BCD to 7-segment decoder, written as canonical sum of minterms.
+// Compile with -O1, then switch to -O2: Quine–McCluskey finds the minimal form.
+input b3, b2, b1, b0;
+output seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
+
+seg_a = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND b1 AND b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);
+
+seg_b = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND b1 AND b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);
+
+seg_c = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND b1 AND b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);
+
+seg_d = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);
+
+seg_e = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0);
+
+seg_f = (NOT b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);
+
+seg_g = (NOT b3 AND NOT b2 AND b1 AND NOT b0)
+      OR (NOT b3 AND NOT b2 AND b1 AND b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND NOT b0)
+      OR (NOT b3 AND b2 AND NOT b1 AND b0)
+      OR (NOT b3 AND b2 AND b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND NOT b0)
+      OR (b3 AND NOT b2 AND NOT b1 AND b0);

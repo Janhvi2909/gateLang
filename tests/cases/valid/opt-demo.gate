@@ -1,0 +1,10 @@
+// test: Optimization demo (hand-written truth table)
+// expect: none
+// minterms f: 1,3,5,6,7
+// minterms g: 4,5,6,7
+// Optimization demo: compile at -O0, then -O1, and compare
+input a, b, c;
+output f, g;
+
+f = (a AND b) OR (b AND a) OR NOT NOT c;
+g = (a OR 0) AND (a OR b);

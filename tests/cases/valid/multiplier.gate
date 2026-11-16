@@ -1,0 +1,17 @@
+// test: 2-bit multiplier, every row checked against a reference model
+// expect: none
+// check: mult2
+// 2-bit by 2-bit multiplier: p = a * b
+input a1, a0, b1, b0;
+output p3, p2, p1, p0;
+wire x, y, hi, c1;
+
+x  = a1 AND b0;
+y  = a0 AND b1;
+hi = a1 AND b1;
+c1 = x AND y;
+
+p0 = a0 AND b0;
+p1 = x XOR y;
+p2 = hi XOR c1;
+p3 = hi AND c1;
