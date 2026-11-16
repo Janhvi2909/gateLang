@@ -1,0 +1,5 @@
+// expect: E212@3:10
+// test: E212 Malformed name list
+input a, , b;
+output y;
+y = a AND b;

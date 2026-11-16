@@ -1,0 +1,5 @@
+// expect: E218@5:5
+// test: E218 Keyword inside an expression
+input a;
+output y;
+y = input AND a;

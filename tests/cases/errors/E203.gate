@@ -1,0 +1,5 @@
+// expect: E203@5:12
+// test: E203 Unmatched closing parenthesis
+input a, b;
+output y;
+y = a AND b);

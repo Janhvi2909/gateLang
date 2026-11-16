@@ -1,0 +1,5 @@
+// expect: E210@3:10
+// test: E210 Reserved word or constant used as a name
+input a, and;
+output y;
+y = NOT a;

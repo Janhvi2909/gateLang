@@ -1,0 +1,5 @@
+// expect: E213@5:7
+// test: E213 Chained assignment
+input a;
+output x, y;
+x = y = a;

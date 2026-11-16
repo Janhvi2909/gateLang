@@ -1,0 +1,5 @@
+// expect: E214@5:11
+// test: E214 Unexpected end of file
+input a, b;
+output y;
+y = (a AND

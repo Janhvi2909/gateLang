@@ -1,0 +1,6 @@
+// expect: E201@5:12
+// test: E201 Missing semicolon
+input a, b;
+output x, y;
+x = a AND b
+y = a OR b;

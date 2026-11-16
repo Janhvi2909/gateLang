@@ -1,0 +1,5 @@
+// expect: E217@5:7
+// test: E217 NOT used as a binary operator
+input a, b;
+output y;
+y = a NOT b;

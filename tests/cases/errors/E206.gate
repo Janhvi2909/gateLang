@@ -1,0 +1,5 @@
+// expect: E206@5:7
+// test: E206 Missing operator
+input a, b;
+output y;
+y = a b;

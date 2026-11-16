@@ -1,0 +1,5 @@
+// expect: E207@5:5
+// test: E207 Empty expression
+input a;
+output y;
+y = ;

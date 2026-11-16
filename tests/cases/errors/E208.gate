@@ -1,0 +1,5 @@
+// expect: E208@5:2
+// test: E208 Missing =
+input a, b;
+output y;
+y a AND b;

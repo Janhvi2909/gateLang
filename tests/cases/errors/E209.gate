@@ -1,0 +1,6 @@
+// expect: E209@6:1
+// test: E209 Invalid assignment target
+input a, b;
+output y;
+y = NOT a;
+1 = b;

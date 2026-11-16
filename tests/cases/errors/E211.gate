@@ -1,0 +1,6 @@
+// expect: E211@3:1
+// test: E211 Empty declaration
+input ;
+input a;
+output y;
+y = NOT a;

@@ -1,0 +1,5 @@
+// expect: E205@5:5
+// test: E205 Missing left operand
+input b;
+output y;
+y = OR b;

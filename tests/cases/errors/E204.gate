@@ -1,0 +1,5 @@
+// expect: E204@5:7
+// test: E204 Missing right operand
+input a;
+output y;
+y = a AND ;
