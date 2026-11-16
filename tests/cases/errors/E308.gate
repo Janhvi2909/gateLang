@@ -1,0 +1,6 @@
+// expect: E308@6:11
+// test: E308 Undriven wire
+input a;
+output y;
+wire t;
+y = a AND t;

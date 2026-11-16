@@ -1,0 +1,6 @@
+// expect: E306@6:1
+// test: E306 Multiple drivers
+input a, b;
+output y;
+y = a AND b;
+y = a OR b;

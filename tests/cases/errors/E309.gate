@@ -1,0 +1,6 @@
+// expect: E309@5:1
+// test: E309 Combinational loop
+input a, b;
+output x, y;
+x = a AND y;
+y = x OR b;

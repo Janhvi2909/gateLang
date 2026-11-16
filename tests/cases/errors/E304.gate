@@ -1,0 +1,6 @@
+// expect: E304@5:1
+// test: E304 Assignment to an input
+input a, b;
+output y;
+a = b;
+y = NOT a;

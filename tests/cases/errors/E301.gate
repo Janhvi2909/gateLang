@@ -1,0 +1,5 @@
+// expect: E301@5:5
+// test: E301 Undeclared identifier
+input carry, b;
+output y;
+y = cary AND b;

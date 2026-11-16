@@ -1,0 +1,5 @@
+// expect: E303@4:11
+// test: E303 Conflicting declarations
+input a, x;
+output y, x;
+y = a AND x;

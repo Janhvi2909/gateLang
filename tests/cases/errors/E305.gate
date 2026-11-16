@@ -1,0 +1,6 @@
+// expect: E305@6:1
+// test: E305 Assignment to an undeclared signal
+input a;
+output y;
+y = NOT a;
+z = a;

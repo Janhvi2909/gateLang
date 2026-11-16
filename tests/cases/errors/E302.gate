@@ -1,0 +1,5 @@
+// expect: E302@3:10
+// test: E302 Duplicate declaration
+input a, a;
+output y;
+y = NOT a;

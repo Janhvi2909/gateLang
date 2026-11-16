@@ -1,0 +1,5 @@
+// expect: E310@5:1
+// test: E310 Self-dependency
+input a;
+output x;
+x = x AND a;

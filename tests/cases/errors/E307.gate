@@ -1,0 +1,5 @@
+// expect: E307@4:11
+// test: E307 Undriven output
+input a;
+output y, z;
+y = NOT a;
