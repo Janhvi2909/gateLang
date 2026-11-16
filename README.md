@@ -14,11 +14,28 @@ cout = (a AND b) OR (cin AND (a XOR b));
 
 ![GateLang compiling the optimization demo: 9 gates reduced to 2 and verified](docs/screenshots/07-circuit.png)
 
-Compiler Design course project. Everything runs in the browser, with nothing to install, and the same compiler runs from the command line under Node.js.
+Compiler Design course project, built on the **AI Product Engineering Track** (see [below](#implementation-track-ai-product-engineering)). Everything runs in the browser, with nothing to install, and the same compiler runs from the command line under Node.js.
+
+**Live demo:** <https://janhvi2909.github.io/gateLang/>
 
 ---
 
-## What makes it different
+## Features
+
+Type a program, press **Compile**, and every phase of the compiler shows its own output in a separate panel:
+
+| Phase | What you see in the UI |
+|---|---|
+| 1. Lexical analysis | Token table (type, lexeme, line:column) and syntax colouring driven by the real lexer |
+| 2. Syntax analysis | Abstract syntax tree and full parse tree, drawn as diagrams |
+| 3. Semantic analysis | Symbol table, dependency graph, evaluation order and the list of checks that ran |
+| 4. Intermediate code | Three-address code as quadruples (one instruction = one gate) |
+| 5. Optimization | Before/after code, every rewrite with the Boolean law that justified it, gate-count savings and the equivalence proof |
+| 6. Code generation | Clickable circuit diagram with a live simulator, truth table, gate-level netlist and Verilog for the chosen gate library |
+
+Diagnostics from all phases are listed together, each with a code, location, caret and fix hint; the **Error catalog** tab explains all 62 codes and the **Test suite** tab runs the compiler's self-tests (catalog examples, example circuits, robustness and fuzzing) right in the browser.
+
+### What makes it different
 
 | | Typical student compiler | GateLang |
 |---|---|---|
@@ -39,11 +56,30 @@ Compiler Design course project. Everything runs in the browser, with nothing to 
 
 ---
 
-## Run it
+## Requirements and dependencies
 
-**In a browser, with nothing to install:** open `index.html`, or download the single-file build `dist/GateLang.html`, which works offline and can be sent as one attachment.
+| What | Needed for | Version |
+|---|---|---|
+| A modern web browser (Chrome, Edge, Firefox or Safari) | The web app (`index.html`, `dist/GateLang.html`) | Any recent version |
+| [Node.js](https://nodejs.org/) | The command-line compiler, tests, benchmarks and build scripts | 16 or newer (CI uses 20) |
+| Third-party packages | Nothing | **None.** The project has zero npm dependencies, so there is no `npm install` step |
 
-**Online, via GitHub Pages:** in your repository go to *Settings → Pages → Build and deployment → Deploy from a branch*, choose `main` and `/ (root)`, then save. After a minute the compiler is live at `https://<your-username>.github.io/<repo-name>/`.
+The compiler is plain JavaScript with no build step. The IBM Plex fonts used by the UI are bundled in `ui/fonts/`, so the app also works offline.
+
+## Setup
+
+```bash
+git clone https://github.com/Janhvi2909/gateLang.git
+cd gateLang
+node --version        # should print v16 or newer
+npm test              # runs the 212 checks; nothing to install first
+```
+
+## Build and run
+
+**In a browser, with nothing to install:** open `index.html` (double-click it), or download the single-file build `dist/GateLang.html`, which works offline and can be sent as one attachment.
+
+**Online, via GitHub Pages:** the app is deployed at <https://janhvi2909.github.io/gateLang/>. To deploy your own copy, go to *Settings → Pages → Build and deployment → Deploy from a branch*, choose `main` and `/ (root)`, then save.
 
 **From the command line (Node.js 16 or newer):**
 
@@ -112,14 +148,37 @@ docs/                   report, presentation script, language reference, error c
 - [`docs/LANGUAGE.md`](docs/LANGUAGE.md): the language reference and grammar
 - [`docs/ERROR_CATALOG.md`](docs/ERROR_CATALOG.md): all 62 diagnostics, with examples and real compiler output
 
-## Team
+## Implementation track: AI Product Engineering
 
-| Member | Responsibility |
+GateLang was built on the course's **AI Product Engineering Track**: generative AI tools were used to assemble the compiler as one interactive application, where you type source code and see the output of every compilation phase (see [Features](#features)).
+
+| Tool | What we used it for |
 |---|---|
-| *Name 1* | Lexer, parser, syntax trees, syntax diagnostics |
-| *Name 2* | Symbol table, semantic analysis, error handler and catalog |
-| *Name 3* | Intermediate code, optimizer, Quine–McCluskey, code generation |
-| *Name 4* | User interface, circuit simulator, test suite, documentation |
+| Claude (Anthropic) | Writing the code of the compiler phases, the CLI and the web UI |
+| ChatGPT (OpenAI) | Writing the project report, and researching edge cases the compiler should handle (which became the robustness tests and the error catalog's examples) |
+| Claude Code (Anthropic) | Preparing this repository and README for submission |
+
+**Methodology.** We fixed the language, the grammar, the token list and the error catalog first ([`GateLang_Project_Plan.md`](GateLang_Project_Plan.md), [`docs/LANGUAGE.md`](docs/LANGUAGE.md)), then built the compiler one phase at a time in pipeline order: lexer → parser → semantic analysis → intermediate code → optimizer → code generation, followed by the CLI, the web UI, the tests and the documentation. Each phase is a separate module in `src/` with no UI code, so it can be run, tested and explained on its own. The test suite (212 checks: golden files for every diagnostic and optimizer law, plus equivalence and crash fuzzing) is how we checked that the AI-generated code behaves correctly.
+
+## Team and individual contributions
+
+| Member | GitHub | Modules implemented | Main files |
+|---|---|---|---|
+| Manasa | [@manasa030606](https://github.com/manasa030606) | Lexer; parser and syntax trees; symbol table and semantic analysis | `src/tokens.js`, `src/lexer.js`, `src/ast.js`, `src/parser.js`, `src/symtab.js`, `src/semantic.js` |
+| Anuj Kumar Singh | [@MUFFANUJ](https://github.com/MUFFANUJ) | Error handler and error catalog; intermediate code generation | `src/diagnostics.js`, `src/catalog.js`, `src/icg.js` |
+| Vaishnav Verma | [@vermavaishnav70](https://github.com/vermavaishnav70) | Optimizer and Quine–McCluskey; code generation (netlist and Verilog) | `src/optimizer.js`, `src/qm.js`, `src/codegen.js` |
+| Ronit Kumar Choudhary | [@codeit-ronit](https://github.com/codeit-ronit) | Simulator and verification; web UI; CLI | `src/simulator.js`, `src/verify.js`, `index.html`, `ui/`, `cli/gatec.js`, `tools/build.js` |
+| Janhvi Yadav | [@Janhvi2909](https://github.com/Janhvi2909) | Tests and benchmarks; documentation, report and presentation | `tests/`, `src/selftest.js`, `tools/gen-tests.js`, `examples/`, `src/examples.js`, `docs/`, `tools/gen-docs.js`, `README.md` |
+| Whole team | | Language design, project plan, and the compiler driver that connects the six phases | `GateLang_Project_Plan.md`, `src/compiler.js` |
+
+## Future scope
+
+- **Sequential logic:** flip-flops, a clock and registers, so that GateLang can describe counters and state machines, not only combinational circuits.
+- **Buses and modules:** multi-bit signals (`a[3:0]`) with bitwise operators, and reusable modules that can be instantiated, for hierarchical designs such as an n-bit adder built from full adders.
+- **More optimization phases:** BDD-based or Espresso-style heuristic minimisation for functions with more than 10 inputs, where exact Quine–McCluskey becomes too slow, plus multi-level factoring that shares logic between outputs.
+- **More code-generation targets:** VHDL output, FPGA lookup-table (LUT) mapping, and gate libraries with area and delay costs so that technology mapping can optimise for speed or size.
+- **Timing analysis:** report the critical path in nanoseconds from per-gate delays, not only the logic depth.
+- **Editor tooling:** a Karnaugh-map view in the UI, and a VS Code extension that shows GateLang diagnostics while you type.
 
 ## License
 
