@@ -1,0 +1,6 @@
+// expect: E105@5:7 E201@5:10 E101@6:7
+// test: several errors in one file (lex-and-syntax)
+input a, b;
+output y, z;
+y = a ∧ b
+z = a @@ b;

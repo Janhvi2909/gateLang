@@ -1,0 +1,6 @@
+// expect: E305@5:1 E301@6:10
+// test: several errors in one file (case-sensitivity)
+input carry, sum_in;
+output Result;
+result = carry AND sum_in;
+Result = Carry;

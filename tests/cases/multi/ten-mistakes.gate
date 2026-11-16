@@ -1,0 +1,17 @@
+// expect: E302@5:7 E301@9:20 E202@10:21 E206@11:10 E102@12:14 E304@13:1 E309@14:1 E308@14:14 E306@16:1 E305@17:1
+// test: several errors in one file (ten-mistakes)
+// Ten different mistakes. The compiler reports all of them at once.
+input a, b, c, carry;
+input a;
+output sum, cout, y, z, u, v;
+wire t;
+
+sum  = a XOR b XOR cary;
+cout = (a AND b) OR (carry AND c;
+y    = a b;
+z    = a AND 2;
+b    = a OR c;
+u    = v AND t;
+v    = u OR c;
+z    = NOT c;
+w    = a NAND c;

@@ -1,0 +1,6 @@
+// expect: E210@3:10 E218@5:5 E210@6:1
+// test: several errors in one file (keyword-misuse)
+input a, wire;
+output y;
+y = output AND a;
+not = a;

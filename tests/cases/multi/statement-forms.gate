@@ -1,0 +1,7 @@
+// expect: E208@5:2 E216@6:3 E209@7:1
+// test: several errors in one file (statement-forms)
+input a, b;
+output y, z;
+y a AND b;
+z == a;
+1 = a;

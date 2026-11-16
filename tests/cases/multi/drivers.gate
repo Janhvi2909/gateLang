@@ -1,0 +1,8 @@
+// expect: E307@4:11 W304@5:1 E306@6:1 E306@7:1 E304@8:1
+// test: several errors in one file (drivers)
+input a, b;
+output y, z;
+y = a;
+y = b;
+y = a AND b;
+a = b;

@@ -1,0 +1,5 @@
+// expect: E301@5:5
+// test: several errors in one file (single-typo-no-cascade)
+input alpha, beta;
+output y;
+y = alpah AND beta;

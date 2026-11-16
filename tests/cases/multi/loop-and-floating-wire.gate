@@ -1,0 +1,8 @@
+// expect: E309@6:1 E308@8:5
+// test: several errors in one file (loop-and-floating-wire)
+input a, b;
+output x, y, z;
+wire w;
+x = a AND y;
+y = x OR b;
+z = w;

@@ -1,0 +1,15 @@
+// expect: E302@5:18 E215@6:1 E202@9:5 W201@9:6 E101@10:7 E206@11:7 E301@12:15 E304@13:1 E306@14:1 E102@14:13 E305@15:1
+// test: several errors in one file (error-demo)
+// Error demo: each statement has a different mistake.
+// All of them are reported in one run, each with a hint.
+input a, b, sel, sel;
+outptu y;
+output z, w;
+wire t;
+y = (a AND b OR sel;
+z = a @ b;
+w = a b;
+t = a AND NOT sle;
+a = b;
+z = sel XOR 2;
+x = a OR t;

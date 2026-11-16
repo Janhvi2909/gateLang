@@ -1,0 +1,8 @@
+// expect: E204@5:7 E202@6:5 E217@7:7 E205@8:5
+// test: several errors in one file (expression-forms)
+input a, b, c;
+output p, q, r, s;
+p = a AND OR b;
+q = (a OR b;
+r = a NOT b;
+s = OR c;

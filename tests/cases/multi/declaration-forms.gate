@@ -1,0 +1,6 @@
+// expect: E212@3:10 E212@4:9 E211@5:1
+// test: several errors in one file (declaration-forms)
+input a, , b;
+output y,;
+wire ;
+y = a AND b;
