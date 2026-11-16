@@ -1,0 +1,5 @@
+// expect: E106@5:7
+// test: E106 Lone slash
+input a, b;
+output y;
+y = a / b;

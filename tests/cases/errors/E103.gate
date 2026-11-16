@@ -1,0 +1,5 @@
+// expect: E103@5:10
+// test: E103 Malformed identifier
+input a;
+output y;
+y = a OR 2b;

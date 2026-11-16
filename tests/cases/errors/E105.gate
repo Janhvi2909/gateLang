@@ -1,0 +1,5 @@
+// expect: E105@5:7
+// test: E105 Unsupported Unicode character
+input a, b;
+output y;
+y = a ∧ b;

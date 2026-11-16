@@ -1,0 +1,5 @@
+// expect: E107@3:7
+// test: E107 Identifier too long
+input this_signal_name_is_much_too_long_to_be_reasonable_in_a_netlist_x;
+output y;
+y = NOT this_signal_name_is_much_too_long_to_be_reasonable_in_a_netlist_x;

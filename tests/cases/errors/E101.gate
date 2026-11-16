@@ -1,0 +1,5 @@
+// expect: E101@5:7
+// test: E101 Illegal character
+input a, b;
+output y;
+y = a @ b;

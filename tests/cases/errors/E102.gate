@@ -1,0 +1,5 @@
+// expect: E102@5:11
+// test: E102 Invalid constant
+input a;
+output y;
+y = a AND 2;

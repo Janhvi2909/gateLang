@@ -1,0 +1,5 @@
+// expect: E104@5:12
+// test: E104 Unterminated block comment
+input a;
+output y;
+y = NOT a; /* remember to add the carry
