@@ -9,7 +9,8 @@
     "test:full": "node tests/run-tests.js --full",
     "bench": "node tests/bench.js",
     "build": "node tools/build.js",
-    "gen-tests": "node tools/gen-tests.js"
+    "gen-tests": "node tools/gen-tests.js",
+    "docs": "node tools/gen-docs.js"
   },
   "keywords": ["compiler", "compiler-design", "logic-gates", "boolean-algebra", "quine-mccluskey", "verilog", "education"],
   "license": "MIT",
