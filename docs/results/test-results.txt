@@ -1,0 +1,16 @@
+
+GateLang test suite (full)
+────────────────────────────────────────────────────────────
+✔ golden/valid             18/18   
+✔ golden/errors            38/38   
+✔ golden/warnings          22/22   
+✔ golden/multi             11/11   
+✔ golden/optimizer         29/29   
+✔ catalog examples         60/60   
+✔ example circuits         14/14   
+✔ robustness               17/17   
+✔ safety net                1/1    W900 raised, fell back to -O0, output still correct
+✔ equivalence fuzz          1/1    10000/10000 equivalent (90,000 compilations, 12.3 s)
+✔ crash fuzz                1/1    10000/10000 handled without crashing (1.4 s)
+────────────────────────────────────────────────────────────
+PASSED  212/212 checks in 14.3 s
