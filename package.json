@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node tests/run-tests.js",
     "test:full": "node tests/run-tests.js --full",
+    "bench": "node tests/bench.js",
     "gen-tests": "node tools/gen-tests.js"
   },
   "keywords": ["compiler", "compiler-design", "logic-gates", "boolean-algebra", "quine-mccluskey", "verilog", "education"],
